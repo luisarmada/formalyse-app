@@ -4,6 +4,7 @@ import { invoke } from "@tauri-apps/api/core";
 
 const greetMsg = ref("");
 const name = ref("");
+const webcamUrl = ref("http://localhost:5000/video"); // Flask backend video URL
 
 async function greet() {
   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -33,6 +34,10 @@ async function greet() {
       <button type="submit">Greet</button>
     </form>
     <p>{{ greetMsg }}</p>
+    <p>Your live webcam feed from the Python backend:</p>
+    <div class="video-container">
+      <img :src="webcamUrl" alt="Webcam Feed" class="webcam-stream" />
+    </div>
   </main>
 </template>
 
@@ -45,6 +50,19 @@ async function greet() {
   filter: drop-shadow(0 0 2em #249b73);
 }
 
+.video-container {
+  margin-top: 20px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.webcam-stream {
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
 </style>
 <style>
 :root {
@@ -53,8 +71,8 @@ async function greet() {
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #ffffff;
+  background-color: #161618;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
