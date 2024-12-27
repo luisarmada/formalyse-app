@@ -13,58 +13,50 @@ async function greet() {
 </script>
 
 <template>
-  <main class="container">
-    <h1>Welcome to Tauri + Vue</h1>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  </head>
+  <div id="app">
+    
+    <main class="scrollable-container">
+      <router-view v-slot="{ Component }">
+        <component :is="Component" @toggleNavbar="toggleNavbar" />
+      </router-view>
+    </main>
 
-    <div class="row">
-      <a href="https://vitejs.dev" target="_blank">
-        <img src="/vite.svg" class="logo vite" alt="Vite logo" />
-      </a>
-      <a href="https://tauri.app" target="_blank">
-        <img src="/tauri.svg" class="logo tauri" alt="Tauri logo" />
-      </a>
-      <a href="https://vuejs.org/" target="_blank">
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-      </a>
-    </div>
-    <p>Click on the Tauri, Vite, and Vue logos to learn more.</p>
-
-    <form class="row" @submit.prevent="greet">
-      <input id="greet-input" v-model="name" placeholder="Enter a name..." />
-      <button type="submit">Greet</button>
-    </form>
-    <p>{{ greetMsg }}</p>
-    <p>Your live webcam feed from the Python backend:</p>
-    <div class="video-container">
-      <img :src="webcamUrl" alt="Webcam Feed" class="webcam-stream" />
-    </div>
-  </main>
+    <NavBar v-if="isNavbarEnabled" />
+  </div>
 </template>
 
-<style scoped>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
+<script>
+import NavBar from './components/NavBar.vue';
 
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #249b73);
-}
+export default {
+  name: 'App',
+  components: {
+    NavBar,
+  },
+  data() {
+    return {
+      isNavbarEnabled: true, // Default navbar state
+    };
+  },
+  methods: {
+    toggleNavbar(enabled) {
+      this.isNavbarEnabled = enabled;
+    },
+  },
+};
+</script>
 
-.video-container {
-  margin-top: 20px;
-  width: 80%;
-  max-width: 600px;
-}
-
-.webcam-stream {
-  width: 100%;
-  border-radius: 8px;
-  border: 2px solid #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-</style>
 <style>
+body, html, #app {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -72,107 +64,38 @@ async function greet() {
   font-weight: 400;
 
   color: #ffffff;
-  background-color: #161618;
+  background-color: #111111; /*161618*/
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  overflow: hidden;
 }
 
-.container {
-  margin: 0;
-  padding-top: 10vh;
+#app {
+  overflow: hidden; /* Prevent full app scrolling */
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
+.scrollable-container {
+  flex: 1; /* Ensures the main content scrolls independently */
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  left: 0;
+
+  margin: 0;
+  padding-bottom: 50px; /* Reserve space for navbar */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
+.scrollable-container::-webkit-scrollbar {
+  display: none; /* Hides scrollbar */
 }
-
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-h1 {
-  text-align: center;
-}
-
-input,
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
-}
-
-input,
-button {
-  outline: none;
-}
-
-#greet-input {
-  margin-right: 5px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
-
-  a:hover {
-    color: #24c8db;
-  }
-
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-  button:active {
-    background-color: #0f0f0f69;
-  }
-}
-
 </style>
+

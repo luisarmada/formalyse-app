@@ -14,7 +14,8 @@
       {
         "title": "formalyse-app",
         "width": 393,
-        "height": 852
+        "height": 852,
+        "resizable": false
       }
     ],
     "security": {
