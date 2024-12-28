@@ -52,6 +52,10 @@ export default {
 </script>
 
 <style>
+* {
+  user-select: none;
+}
+
 body, html, #app {
   margin: 0;
   padding: 0;
@@ -89,7 +93,7 @@ body, html, #app {
   left: 0;
 
   margin: 0;
-  padding-bottom: 50px; /* Reserve space for navbar */
+  padding-bottom: 100px; /* Reserve space for navbar */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
