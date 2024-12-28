@@ -1,6 +1,5 @@
 <template>
-    <h1>Programs Page</h1>
-
+    
 </template>
 
 <script>

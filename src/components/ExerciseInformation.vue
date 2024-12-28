@@ -1,43 +1,77 @@
 <template>
     <div class="exercise-info" @click="goToExercise">
-      <div class="exercise-image">
-        <img src="/stock/bodyweight/ab-crunch.jpg" :alt="exerciseName" />
-      </div>
-      <div class="exercise-text">
-        <p class="exercise-name">{{ exerciseName }}</p>
-        <p class="exercise-description">{{ description }}</p>
-      </div>
+        <div class="exercise-image">
+            <img :src="imageSrc" :alt="exerciseName" />
+        </div>
+        <div class="exercise-text">
+        
+            <p class="exercise-name">{{ exerciseName }}</p>
+
+            <!-- Render tags iteratively -->
+            <div class="tags">
+                <ExerciseTag v-for="(tag, index) in limitedTags" :key="index" :tag="tag" />
+            </div>
+
+            <!-- <p class="exercise-description">{{ description }}</p> -->
+        </div>
     </div>
-  </template>
+  </template>  
   
-  <script>
-  export default {
-    name: "ExerciseInformation",
-    props: {
-      exerciseName: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        default: "No description available.",
-      },
-      imageSrc: {
-        type: String,
-        required: true,
-      },
-      exerciseLink: {
-        type: String,
-        required: true,
-      },
+<script>
+import ExerciseTag from './ExerciseTag.vue';
+
+export default {
+  name: "ExerciseInformation",
+  components: {
+    ExerciseTag
+  },
+  props: {
+    exerciseName: {
+      type: String,
+      required: true,
     },
-    methods: {
-      goToExercise() {
-        this.$router.push(this.exerciseLink);
-      },
+    description: {
+      type: String,
+      default: "No description available.",
     },
-  };
-  </script>
+    slug: {
+      type: String,
+      required: true, // The slug is used to dynamically generate imageSrc
+    },
+    tags: {
+      type: Array,
+      default: () => [], // Tags array
+    },
+    exerciseLink: {
+      type: String,
+      required: true, // Link to the ExerciseDetail page
+    },
+  },
+  computed: {
+    imageSrc() {
+      // Dynamically construct the image path
+      return `/stock/exercises/${this.slug}/display.jpg`;
+    },
+    limitedTags() {
+      // Return only the first 2 tags
+      return this.tags.slice(0, 2);
+    },
+  },
+  methods: {
+    goToExercise() {
+      this.$router.push({
+        path: `/exercise/${this.slug}`,
+        state: {
+          exerciseName: this.exerciseName,
+          description: this.description,
+          imageSrc: this.imageSrc,
+          tags: this.tags,
+        },
+      });
+    },
+  },
+};
+</script>
   
 
   <style scoped>
@@ -48,13 +82,12 @@
     border-radius: 24px;
     height: 110px;
     overflow: hidden; /* Ensures the image is clipped by the borders */
-    margin: 4px 18px;
     transition: background-color 0.3s ease;
-    background-color: #1d1d1d;
+    background-color: var(--button-background-color);
   }
   
   .exercise-info:hover {
-    background-color: #2a2a2a;
+    background-color: var(--button-hover-color);
   }
   
   .exercise-image {
@@ -72,14 +105,15 @@
   
   .exercise-text {
     display: flex;
+    gap: 6px;
     flex-direction: column;
     justify-content: center;
-    padding: 8px 16px; /* Space around the text */
+    padding: 0px 16px; /* Space around the text */
     flex: 1; /* Take up remaining space */
   }
   
   .exercise-name {
-    font-size: 1em;
+    font-size: 1.05em;
     font-weight: bold;
     margin: 0;
   }
@@ -89,5 +123,11 @@
     color: #666;
     margin: 4px 0 0;
   }
-  </style>
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+</style>
   

@@ -35,7 +35,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #111111;
+  background-color: var(--background-color);
   display: flex;
   justify-content: space-around;
   padding: 18px 0;
@@ -43,7 +43,7 @@ export default {
 
 /* Router-link styling */
 .nav-link {
-  color: #EEEEEE;
+  color: var(--icon-button-color);
   text-align: center;
   text-decoration: none;
   display: flex;

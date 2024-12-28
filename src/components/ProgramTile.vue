@@ -47,7 +47,7 @@
 <style>
 .center-container {
     position: relative;
-    width: 90%;
+    width: 100%;
     height: 220px;
     display: flex;
     overflow: hidden; 

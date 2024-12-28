@@ -33,8 +33,6 @@ export default {
 .search-bar {
     display: flex;
     align-items: center;
-    margin-left: 18px;
-    margin-right: 18px;
     width: auto;
 
     border: 1px solid #4ed0c3; /* Border color */

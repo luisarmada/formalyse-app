@@ -31,7 +31,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0px 18px;
+  margin: 0px;
 }
 
 .category-header {

@@ -6,6 +6,8 @@ import ProgressPage from '../views/ProgressPage.vue';
 import ProgramsPage from '../views/ProgramsPage.vue';
 import SettingsPage from '../views/SettingsPage.vue';
 import ExerciseDetail from '../views/ExerciseDetail.vue';
+import AccountPage from '../views/AccountPage.vue';
+import ExerciseSearch from '../views/ExerciseSearch.vue';
 
 const routes = [
   { path: '/', component: HomePage },
@@ -13,7 +15,10 @@ const routes = [
   { path: '/progress', component: ProgressPage },
   { path: '/programs', component: ProgramsPage },
   { path: '/settings', component: SettingsPage },
-  { path: "/exercises/:name", component: ExerciseDetail },
+  { path: "/exercise/:slug", component: ExerciseDetail },
+  { path: '/account', component: AccountPage },
+  { path: '/exercise-search', component: ExerciseSearch },
+
 ];
 
 const router = createRouter({

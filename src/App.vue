@@ -61,28 +61,14 @@ body, html, #app {
   padding: 0;
 }
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color: #ffffff;
-  background-color: #111111; /*161618*/
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  overflow: hidden;
-}
-
 #app {
   overflow: hidden; /* Prevent full app scrolling */
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  background-color: var(--background-color);
+  color: var(--text-color)
 }
 
 .scrollable-container {
@@ -100,6 +86,51 @@ body, html, #app {
 
 .scrollable-container::-webkit-scrollbar {
   display: none; /* Hides scrollbar */
+}
+
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  /* color: #ffffff;
+  background-color: #111111; 161618 */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  overflow: hidden;
+
+  --background-color: #191922 ;
+  --button-background-color: #1e222a;
+  --button-hover-color: #2a2e35;
+
+  --icon-button-color: #7b7c81;
+  --text-color: white;
+  --primary-color: #76dbd1;
+  --primary-darker-color: #4ed0c3;
+}
+
+.dark-mode {
+  --background-color: #191922;
+  --button-background-color: #1e222a;
+  --button-hover-color: #2a2e35;
+
+  --icon-button-color: #7b7c81;
+  --text-color: white;
+  --primary-color: #76dbd1;
+  --primary-darker-color: #4ed0c3;
+}
+
+.light-mode {
+  --background-color: #ffffff;
+  --button-background-color: #252733;
+  --text-color: #000000;
+  --primary-color: #76dbd1;
 }
 </style>
 
