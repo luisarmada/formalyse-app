@@ -33,8 +33,8 @@
       />
 
       <SectionCategory 
-        headerText="Formalyse Exercises" 
-        redirect-text="See All Exercises"
+        headerText="Exercise Database" 
+        redirect-text=""
         redirectTo="/exercise-search" 
       />
 
@@ -57,9 +57,6 @@
       </div>
 
       <!-- <p v-for="i in 50" :key="i">Placeholder content {{ i }}</p> -->
-      <!-- <div class="video-container">
-        <img :src="webcamUrl" alt="Webcam Feed" class="webcam-stream" />
-      </div> -->
     </div>
     
 </template>
@@ -201,19 +198,5 @@ export default {
 .see-all-button:hover {
   background-color: #4aa79d;
 }
-
-.video-container {
-  margin-top: 20px;
-  width: 80%;
-  max-width: 600px;
-}
-
-.webcam-stream {
-  width: 100%;
-  border-radius: 8px;
-  border: 2px solid #333;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
 
 </style>

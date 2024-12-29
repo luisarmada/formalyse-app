@@ -8,6 +8,7 @@ import SettingsPage from '../views/SettingsPage.vue';
 import ExerciseDetail from '../views/ExerciseDetail.vue';
 import AccountPage from '../views/AccountPage.vue';
 import ExerciseSearch from '../views/ExerciseSearch.vue';
+import LiveAnalysis from '../views/LiveAnalysis.vue';
 
 const routes = [
   { path: '/', component: HomePage },
@@ -18,7 +19,7 @@ const routes = [
   { path: "/exercise/:slug", component: ExerciseDetail },
   { path: '/account', component: AccountPage },
   { path: '/exercise-search', component: ExerciseSearch },
-
+  { path: '/live-analysis', component: LiveAnalysis },
 ];
 
 const router = createRouter({
