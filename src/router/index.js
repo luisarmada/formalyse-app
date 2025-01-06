@@ -19,7 +19,7 @@ const routes = [
   { path: "/exercise/:slug", component: ExerciseDetail },
   { path: '/account', component: AccountPage },
   { path: '/exercise-search', component: ExerciseSearch },
-  { path: '/live-analysis', component: LiveAnalysis },
+  { path: '/live-analysis/:slug', component: LiveAnalysis },
 ];
 
 const router = createRouter({

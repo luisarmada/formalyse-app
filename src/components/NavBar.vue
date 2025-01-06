@@ -9,16 +9,16 @@
     </router-link>
     <router-link to="/progress" class="nav-link" active-class="active">
       <span class="material-icons">insights</span>
-      <span>Progress</span>
+      <span>Activity</span>
     </router-link>
     <router-link to="/programs" class="nav-link" active-class="active">
       <span class="material-icons">fitness_center</span>
       <span>Programs</span>
     </router-link>
-    <router-link to="/friends" class="nav-link" active-class="active">
+    <!-- <router-link to="/friends" class="nav-link" active-class="active">
       <span class="material-icons">groups</span>
       <span>Community</span>
-    </router-link>
+    </router-link> -->
   </nav>
 </template>
 

@@ -123,13 +123,7 @@ export default {
   },
   methods: {
     startLiveAnalysis() {
-      alert(`Starting live analysis for ${this.exercise.name}`); // Placeholder for live analysis logic
-      this.$router.push({
-        path: `/live-analysis`,
-        state: {
-          
-        }
-      });
+      this.$router.push(`/live-analysis/${this.exercise.slug}`);
     },
   },
 };

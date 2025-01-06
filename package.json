@@ -12,9 +12,15 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.26.3",
     "@tauri-apps/api": "^2.1.1",
     "@tauri-apps/plugin-opener": "^2",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "chart.js": "^4.4.7",
     "flask": "^0.2.10",
+    "react": "^19.0.0",
+    "react-body-highlighter": "^2.0.5",
+    "react-dom": "^19.0.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

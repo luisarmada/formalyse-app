@@ -44,7 +44,7 @@
     };
 </script>
   
-<style>
+<style scoped>
 .center-container {
     position: relative;
     width: 100%;

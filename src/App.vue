@@ -1,19 +1,3 @@
-<script setup>
-import { ref } from "vue";
-import { invoke } from "@tauri-apps/api/core";
-
-const greetMsg = ref("");
-const name = ref("");
-const webcamUrl = ref("http://localhost:5000/video"); // Flask backend video URL
-
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsg.value = await invoke("greet", { name: name.value });
-}
-
-
-</script>
-
 <template>
   <head>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -44,6 +28,11 @@ export default {
     return {
       isNavbarEnabled: true, // Default navbar state
     };
+  },
+  mounted() {
+    // Apply the saved theme from localStorage on app load
+    const savedTheme = localStorage.getItem("theme") || "dark-mode";
+    document.documentElement.className = savedTheme;
   },
   methods: {
     toggleNavbar(enabled) {
