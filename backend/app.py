@@ -3,23 +3,23 @@ from flask_cors import CORS
 import cv2
 import atexit
 import threading
-# import psutil
-
-# def log_memory_usage():
-#     process = psutil.Process()
-#     memory_info = process.memory_info()
-#     print(f"Memory usage: {memory_info.rss / 1024 ** 2:.2f} MB")
+import mediapipe as mp
 
 camera_lock = threading.Lock()
-
 
 app = Flask(__name__)
 CORS(app)
 
 camera = None  # Global camera variable
+draw_landmarks = True  # Landmarks enabled by default
+
+# Initialize MediaPipe pose solution
+mp_pose = mp.solutions.pose
+mp_drawing = mp.solutions.drawing_utils
+pose = mp_pose.Pose()
 
 def generate_frames():
-    global camera
+    global camera, draw_landmarks
     with camera_lock:
         try:
             while True:
@@ -31,6 +31,17 @@ def generate_frames():
                     print("Failed to read frame from the camera.")
                     break
 
+                # Convert the frame to RGB for MediaPipe processing
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                results = pose.process(frame_rgb)
+
+                # Draw landmarks if enabled
+                if draw_landmarks and results.pose_landmarks:
+                    mp_drawing.draw_landmarks(
+                        frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS
+                    )
+
+                # Encode the frame as JPEG
                 _, buffer = cv2.imencode('.jpg', frame)
                 frame_bytes = buffer.tobytes()
                 yield (b'--frame\r\n'
@@ -39,8 +50,6 @@ def generate_frames():
             print(f"Error in generate_frames: {e}")
         finally:
             print("Stopping frame generation.")
-
-
 
 @app.route('/video')
 def video_feed():
@@ -69,7 +78,7 @@ def start_camera():
     if slug:
         print(f"Received slug: {slug}")  # Print the slug to the terminal
     else:
-        print("can't find slug")
+        print("Can't find slug")
 
     if camera is None or not camera.isOpened():
         camera = cv2.VideoCapture(0)  # Open the camera
@@ -77,11 +86,14 @@ def start_camera():
             print("Camera failed to open.")
             return jsonify({"status": "error", "message": "Failed to open camera"}), 500
         else:
+            # Reduce resolution and frame rate for performance
+            camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+            camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+            camera.set(cv2.CAP_PROP_FPS, 15)
             print("Camera opened.")
     else:
-        print("Cam already opened..")
+        print("Cam already opened.")
     return jsonify({"status": "success", "message": "Camera activated"})
-
 
 @app.route('/stop_camera', methods=['POST'])
 def stop_camera():
@@ -95,6 +107,13 @@ def stop_camera():
         print("Camera was already released or not initialized.")
     return jsonify({"status": "success", "message": "Camera deactivated"})
 
+@app.route('/toggle_landmarks', methods=['POST'])
+def toggle_landmarks():
+    global draw_landmarks
+    data = request.json
+    draw_landmarks = data.get("enabled", True)
+    print(f"Landmarks drawing {'enabled' if draw_landmarks else 'disabled'}.")
+    return jsonify({"status": "success", "landmarks_enabled": draw_landmarks})
 
 is_shutting_down = False  # Track shutdown state
 
