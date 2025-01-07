@@ -4,6 +4,7 @@ export const exercises = [
     name: "Bodyweight Squats",
     description: "A bodyweight exercise to build lower body strength and core stability.",
     tags: ["Live Analysis", "Legs", "Bodyweight", "Strength", "Beginner"],
+    muscleGroups: ["Quadriceps", "GluteusMaximus", "Hamstrings", "Abdominals"],
     instructions: [
       "Stand with feet shoulder-width apart, arms stretched forward at shoulder height.",
       "Engage your core and initiate the squat by pushing your hips back.",
@@ -22,6 +23,7 @@ export const exercises = [
     name: "Deadlifts",
     description: "A compound movement that strengthens the posterior chain.",
     tags: ["Live Analysis", "Legs", "Barbell", "Strength", "Intermediate"],
+    muscleGroups: ["Quadriceps", "GluteusMaximus", "Hamstrings", "LatissimusDorsi", "Trapezius"],
     instructions: [
       "Stand with the barbell over your midfoot and grip it just outside your knees.",
       "Hinge at your hips, keeping your back straight and lats engaged.",
@@ -40,6 +42,7 @@ export const exercises = [
     name: "Push-Ups",
     description: "A classic bodyweight exercise for chest, shoulders, and triceps.",
     tags: ["Live Analysis", "Chest", "Bodyweight", "Strength", "Beginner"],
+    muscleGroups: ["PectoralisMajor", "Deltoid", "Triceps", "Abdominals"],
     instructions: [
       "Start in a high plank with hands slightly wider than shoulder-width apart.",
       "Engage your core and lower your chest by bending your elbows to a 90-degree angle.",
@@ -57,6 +60,7 @@ export const exercises = [
     name: "Pull-Ups",
     description: "An upper body exercise focusing on back and biceps strength.",
     tags: ["Live Analysis", "Back", "Biceps", "Bodyweight", "Strength", "Advanced"],
+    muscleGroups: ["LatissimusDorsi", "Biceps", "Trapezius", "Infraspinatus", "TeresMajor"],
     instructions: [
       "Grip the bar shoulder-width apart, palms facing away.",
       "Pull your chin above the bar by engaging your lats and squeezing your back.",
@@ -74,6 +78,7 @@ export const exercises = [
     name: "Bicep Curls",
     description: "An isolation exercise for building bicep strength.",
     tags: ["Live Analysis", "Biceps", "Free Weight", "Isolation", "Beginner"],
+    muscleGroups: ["Biceps", "Brachioradialis"],
     instructions: [
       "Stand with a dumbbell in each hand, palms facing forward.",
       "Curl the weights toward your shoulders, keeping elbows stationary.",
@@ -91,6 +96,7 @@ export const exercises = [
     name: "Weighted Forward Lunges",
     description: "A dynamic unilateral exercise for lower body strength and balance.",
     tags: ["Live Analysis", "Legs", "Kettlebell", "Balance", "Strength", "Intermediate"],
+    muscleGroups: ["Quadriceps", "GluteusMaximus", "Hamstrings", "Abdominals"],
     instructions: [
       "Hold a kettlebell/dumbell in a goblet position at chest height.",
       "Step forward and lower until both knees form a 90-degree angle.",
@@ -109,6 +115,7 @@ export const exercises = [
     name: "Russian Twist Shoulder Press Sit-up",
     description: "A complex exercise combining core, shoulder, and rotational strength.",
     tags: ["Live Analysis", "Core", "Shoulders", "Dumbbell", "Strength", "Advanced"],
+    muscleGroups: ["Abdominals", "ExternalOblique", "Deltoid"],
     instructions: [
       "Start seated, holding a dumbbell close to your chest.",
       "Perform a Russian twist by rotating your torso to each side.",

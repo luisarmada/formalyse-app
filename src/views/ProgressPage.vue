@@ -49,7 +49,8 @@
       redirectTo="/programs" 
     />
 
-    <BodyHighlighterWrapper :body-type="'male'" :highlights="['chest', 'biceps']" />
+    <BodyHighlighter :slug="currentExerciseSlug" />
+
     
   </body>
   
@@ -58,7 +59,7 @@
 <script>
 import SectionCategory from '../components/SectionCategory.vue';
 import BarChart from '../components/BarChart.vue';
-import BodyHighlighterWrapper from '../components/BodyHighlighterWrapper.vue';
+import BodyHighlighter from '../components/BodyHighlighter.vue';
 
 
 export default {
@@ -69,6 +70,7 @@ export default {
   },
   data() {
     return {
+      currentExerciseSlug: 'push-ups',
       currentChartType: 'bar',
       currentChartData: {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -109,7 +111,7 @@ export default {
   components: {
     SectionCategory,
     BarChart,
-    BodyHighlighterWrapper,
+    BodyHighlighter,
   },
   methods: {
     switchChart(chart) {
